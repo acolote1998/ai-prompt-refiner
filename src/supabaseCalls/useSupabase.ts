@@ -13,7 +13,12 @@ export const getApiKeyByUserId = async (userId: string) => {
     .from("user_api_keys")
     .select("key")
     .eq("user_id", userId);
-  console.log(dbResponse);
+
+  if (dbResponse.data) {
+    return dbResponse.data[0];
+  }
+
+  return dbResponse.error.message;
 };
 
 export const updateApiKeyByUserId = async (userId: string, newKey: string) => {
