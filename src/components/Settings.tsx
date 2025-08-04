@@ -8,6 +8,7 @@ const Settings = () => {
   const [keyInput, setKeyInput] = useState<string>("");
   const { data: keyFromUser } = useGetKey(user?.id);
   const queryClient = useQueryClient();
+  const [keyIsUpdating, setKeyIsUpdating] = useState<boolean>(false);
 
   if (!user) {
     return null; // or return a loading state
@@ -16,24 +17,42 @@ const Settings = () => {
   return (
     <div>
       <p>Settings</p>
-      <p>Key: {keyFromUser?.key ?? "No key found"}</p>
-      <input
-        className="bg-white rounded-lg"
-        type="text"
-        onChange={(e) => {
-          setKeyInput(e.target.value);
-        }}
-      />
-      <p
-        onClick={async () => {
-          if (user) {
-            await updateApiKeyByUserId(user.id, keyInput);
-            await queryClient.invalidateQueries({ queryKey: ["key"] });
-          }
-        }}
-      >
-        UPDATE KEY
+      <p>
+        {keyFromUser?.key
+          ? "Gemini key successfully saved"
+          : 'Please add a Gemini Key by pasting it below and then clicking "Update key"'}
       </p>
+      {keyIsUpdating && (
+        <>
+          <input
+            className="bg-white rounded-lg"
+            type="text"
+            onChange={(e) => {
+              setKeyInput(e.target.value);
+            }}
+          />
+          <p
+            onClick={async () => {
+              if (user) {
+                await updateApiKeyByUserId(user.id, keyInput);
+                await queryClient.invalidateQueries({ queryKey: ["key"] });
+                setKeyIsUpdating((prev) => !prev);
+              }
+            }}
+          >
+            Update key
+          </p>
+        </>
+      )}
+      {!keyIsUpdating && (
+        <p
+          onClick={() => {
+            setKeyIsUpdating((prev) => !prev);
+          }}
+        >
+          Use a new key
+        </p>
+      )}
     </div>
   );
 };
