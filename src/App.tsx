@@ -2,7 +2,13 @@ import {
   getApiKeyByUserId,
   updateApiKeyByUserId,
 } from "./supabaseCalls/useSupabase";
-import { SignedIn, SignedOut, SignInButton, useUser } from "@clerk/clerk-react";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignOutButton,
+  useUser,
+} from "@clerk/clerk-react";
 function App() {
   const { user } = useUser();
   return (
@@ -24,6 +30,7 @@ function App() {
           >
             UPDATE KEY
           </p>
+          <SignOutButton />
         </SignedIn>
         <SignedOut>
           <SignInButton />
