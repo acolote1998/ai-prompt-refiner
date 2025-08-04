@@ -1,7 +1,9 @@
 function App() {
   return (
     <>
-      <div>Hi</div>
+      <div className="flex items-center justify-center text-center">
+        <h1 className="font-bold text-3xl">Prompt Refiner</h1>
+      </div>
     </>
   );
 }
