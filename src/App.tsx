@@ -24,7 +24,12 @@ function App() {
         </div>
       </SignedIn>
       <SignedOut>
-        <SignInButton />
+        <div className="flex flex-col">
+          <SignInButton />
+          <p className="text-center">
+            Please sign in to get access to the prompt refiner
+          </p>
+        </div>
       </SignedOut>
     </>
   );
