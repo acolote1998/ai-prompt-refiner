@@ -1,15 +1,25 @@
-import { getApiKeyByUserId } from "./supabaseCalls/useSupabase";
+import {
+  getApiKeyByUserId,
+  updateApiKeyByUserId,
+} from "./supabaseCalls/useSupabase";
 function App() {
   return (
     <>
-      <div className="flex items-center justify-center text-center">
+      <div className="flex flex-col items-center justify-center text-center">
         <h1 className="font-bold text-3xl">Prompt Refiner</h1>
         <p
           onClick={() => {
             getApiKeyByUserId("1");
           }}
         >
-          Test Me
+          GET KEY
+        </p>
+        <p
+          onClick={() => {
+            updateApiKeyByUserId("1", "newkeypapi");
+          }}
+        >
+          UPDATE KEY
         </p>
       </div>
     </>

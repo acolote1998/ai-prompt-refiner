@@ -11,3 +11,16 @@ export const getApiKeyByUserId = async (userId: string) => {
     .eq("user_id", userId);
   console.log(dbResponse);
 };
+
+export const updateApiKeyByUserId = async (userId: string, newKey: string) => {
+  await supabase
+    .from("user_api_keys")
+    .delete()
+    .eq("user_id", userId)
+    .select("*");
+
+  const dbResponseInsertingNewKey = await supabase
+    .from("user_api_keys")
+    .insert({ user_id: userId, key: newKey });
+  return dbResponseInsertingNewKey;
+};
