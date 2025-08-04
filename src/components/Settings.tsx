@@ -14,7 +14,7 @@ const Settings = () => {
   return (
     <div>
       <p>Settings</p>
-      <p>Key: {keyFromUser ? keyFromUser.key : "No key found"}</p>
+      <p>Key: {keyFromUser?.key ?? "No key found"}</p>
       <p
         onClick={() => {
           if (user) updateApiKeyByUserId(user.id, "usernewkey");

@@ -8,17 +8,21 @@ const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
 //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkaXBpYXV2bWtraWZ6emZzem5uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQyOTk4NzEsImV4cCI6MjA2OTg3NTg3MX0.2zuG2xzar4daak9NFbZHTdN1ymjzDv7Iz5pfTwiSjv4";
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-export const getApiKeyByUserId = async (userId: string) => {
-  const dbResponse = await supabase
+export const getApiKeyByUserId = async (
+  userId: string
+): Promise<{ key: string } | null> => {
+  const { data, error } = await supabase
     .from("user_api_keys")
     .select("key")
-    .eq("user_id", userId);
+    .eq("user_id", userId)
+    .maybeSingle();
 
-  if (dbResponse.data) {
-    return dbResponse.data[0];
+  if (error) {
+    console.error("Supabase error:", error);
+    return null;
   }
 
-  return dbResponse.error.message;
+  return data;
 };
 
 export const updateApiKeyByUserId = async (userId: string, newKey: string) => {
