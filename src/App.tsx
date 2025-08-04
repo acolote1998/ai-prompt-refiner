@@ -6,6 +6,7 @@ import {
   useUser,
 } from "@clerk/clerk-react";
 import useGetKey from "./hooks/useGetKey";
+import PromptRefiner from "./components/PromptRefiner";
 
 function App() {
   const { user } = useUser();
@@ -19,6 +20,7 @@ function App() {
             started
           </p>
         )}
+        {keyRowFromDb?.key && <PromptRefiner geminiKey={keyRowFromDb.key} />}
         <div className="flex items-center justify-center">
           <SignOutButton />
         </div>
