@@ -1,3 +1,4 @@
+import { SignedIn } from "@clerk/clerk-react";
 import { useNavigate } from "@tanstack/react-router";
 
 const Navbar = () => {
@@ -11,13 +12,15 @@ const Navbar = () => {
       >
         Home
       </p>
-      <p
-        onClick={() => {
-          navigate({ to: "/settings" });
-        }}
-      >
-        Settings
-      </p>
+      <SignedIn>
+        <p
+          onClick={() => {
+            navigate({ to: "/settings" });
+          }}
+        >
+          Settings
+        </p>
+      </SignedIn>
     </div>
   );
 };
