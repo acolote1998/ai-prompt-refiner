@@ -25,7 +25,7 @@ const Settings = () => {
         <>
           <input
             className="bg-white rounded-lg"
-            type="text"
+            type="password"
             onChange={(e) => {
               setKeyInput(e.target.value);
             }}
