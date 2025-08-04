@@ -16,7 +16,6 @@ const Settings = () => {
 
   return (
     <div>
-      <p>Settings</p>
       <p>
         {keyFromUser?.key
           ? "Gemini key successfully saved"
@@ -40,7 +39,7 @@ const Settings = () => {
               }
             }}
           >
-            Update key
+            Save key
           </p>
         </>
       )}
@@ -50,7 +49,7 @@ const Settings = () => {
             setKeyIsUpdating((prev) => !prev);
           }}
         >
-          Use a new key
+          Add / change your key
         </p>
       )}
     </div>
