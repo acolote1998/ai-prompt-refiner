@@ -5,14 +5,35 @@ const FeedbackItem = ({
   description,
   score,
 }: FeedbackItemType) => {
+  const calculateBgColor = (score: number): string => {
+    const colors: { [key: number]: string } = {
+      1: "bg-red-900",
+      2: "bg-red-700",
+      3: "bg-orange-600",
+      4: "bg-orange-400",
+      5: "bg-yellow-400",
+      6: "bg-yellow-300",
+      7: "bg-lime-300",
+      8: "bg-emerald-400",
+      9: "bg-emerald-300",
+      10: "bg-green-400",
+    };
+
+    return colors[score];
+  };
+
+  const bgColor = calculateBgColor(score);
   return (
-    <>
-      <li>
-        {nameOfAttribute}: {score}
-        /10
-        <p>{description}</p>
-      </li>
-    </>
+    <div className={`${bgColor}`}>
+      <div>
+        <p className="font-extrabold">{nameOfAttribute}</p>
+        <p className="font-bold">
+          {score}
+          /10
+        </p>
+      </div>
+      <p>{description}</p>
+    </div>
   );
 };
 

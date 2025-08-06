@@ -35,9 +35,9 @@ const PromptRefiner = ({ geminiKey }: PromptRefinerType) => {
               readOnly
             />
           </div>
-          <div className="flex flex-col items-center text-center justify-center w-[50vw]">
+          <div>
             Feedback:
-            <ul>
+            <div className="grid grid-cols-5">
               <FeedbackItem
                 description={
                   promptResponse.initialPromptFeedback.rating.clarity
@@ -87,7 +87,7 @@ const PromptRefiner = ({ geminiKey }: PromptRefinerType) => {
                 nameOfAttribute="Focus"
                 score={promptResponse.initialPromptFeedback.rating.focus.score}
               />
-            </ul>
+            </div>
             Tips:
             <ul>
               <li>
