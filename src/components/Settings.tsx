@@ -21,7 +21,7 @@ const Settings = () => {
       <p>
         {keyFromUser?.key ? (
           <div className="cursor-default absolute right-0 p-1 bg-gray-800 rounded-lg text-green-500 font-light">
-            Gemini key successfully saved
+            Key successfully saved 🔑
           </div>
         ) : (
           'Please add a Gemini Key by pasting it below and then clicking "Update key"'
