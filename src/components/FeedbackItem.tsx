@@ -24,23 +24,25 @@ const FeedbackItem = ({
 
   const bgColor = calculateBgColor(score);
 
-  const calculateTextColor = (score: number): string => {
-    const lightTextScores = [1, 2, 3, 4]; // dark backgrounds → use white text
-
-    return lightTextScores.includes(score) ? "text-white" : "text-black";
-  };
-  const textColor = calculateTextColor(score);
+  const isLightText = [1, 2, 3, 4].includes(score); // for dark backgrounds
+  const textColor = isLightText ? "white" : "black";
 
   return (
-    <div className={`${textColor} flex flex-col gap-1`}>
-      <div className={`${bgColor} rounded-xl`}>
-        <p className="font-semibold">{nameOfAttribute}</p>
-        <p className="font-bold">
-          {score}
-          /10
+    <div className="flex flex-col gap-1">
+      <div className={`${bgColor} rounded-xl p-2`} style={{ color: textColor }}>
+        <p className="font-semibold" style={{ color: textColor }}>
+          {nameOfAttribute}
+        </p>
+        <p className="font-bold" style={{ color: textColor }}>
+          {score}/10
         </p>
       </div>
-      <p className={`${bgColor} rounded-xl p-1 font-light`}>{description}</p>
+      <p
+        className={`${bgColor} rounded-xl p-1 font-light`}
+        style={{ color: textColor }}
+      >
+        {description}
+      </p>
     </div>
   );
 };
