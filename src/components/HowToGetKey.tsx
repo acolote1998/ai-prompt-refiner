@@ -1,6 +1,6 @@
 const HowToGetKey = () => {
   return (
-    <div className="flex flex-col gap-1 p-2 bg-white rounded-2xl shadow max-w-xl mx-auto">
+    <div className="flex flex-col m-2 gap-1 p-2 bg-white rounded-2xl shadow max-w-sm mx-auto">
       <h1 className="text-xl font-semibold text-gray-800">
         How to Get a Gemini API Key
       </h1>
