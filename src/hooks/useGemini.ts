@@ -23,7 +23,7 @@ export async function callGemini(
 **Process:**
 
 1. **Refine the Prompt:** Rewrite the user's prompt to be clearer, more specific, and more likely to elicit the desired response from an LLM. Maintain the original intent of the prompt.  
-2. **Provide Feedback:** Analyze the original prompt based on the following criteria, rating each from 1 to 10:  
+2. **Provide Feedback:** Analyze the original prompt based on the following criteria, rating each from 1 to 10, and including a one-sentence qualitative description that matches the rating:  
    - **Clarity:** How easily can an AI understand the user's intent? (1 = very unclear, 10 = very clear)  
    - **Specificity:** How precise is the prompt in guiding the AI's response? (1 = very vague, 10 = very specific)  
    - **Context Provided:** How much background information is given to help the AI interpret the request? (1 = very little context, 10 = comprehensive context)  
@@ -41,11 +41,26 @@ export async function callGemini(
   "refinedPrompt": "<The improved version of the user's prompt>",
   "initialPromptFeedback": {
     "rating": {
-      "clarity": <Clarity score 1-10>,
-      "specificity": <Specificity score 1-10>,
-      "contextProvided": <Context Provided score 1-10>,
-      "answerability": <Answerability score 1-10>,
-      "focus": <Focus score 1-10>
+      "clarity": {
+        "score": <1-10>,
+        "description": "<Qualitative description for clarity>"
+      },
+      "specificity": {
+        "score": <1-10>,
+        "description": "<Qualitative description for specificity>"
+      },
+      "contextProvided": {
+        "score": <1-10>,
+        "description": "<Qualitative description for context>"
+      },
+      "answerability": {
+        "score": <1-10>,
+        "description": "<Qualitative description for answerability>"
+      },
+      "focus": {
+        "score": <1-10>,
+        "description": "<Qualitative description for focus>"
+      }
     },
     "tips": [
       {"tip1": "<Actionable tip 1>"},
@@ -68,11 +83,26 @@ export async function callGemini(
   "refinedPrompt": "Analyze the following user prompt: 'Make this better.' Evaluate its clarity, specificity, context, answerability, and focus on a scale of 1 to 10. Then, provide three specific recommendations for how the user can improve their prompt writing skills to elicit more useful responses from a large language model.",
   "initialPromptFeedback": {
     "rating": {
-      "clarity": 3,
-      "specificity": 2,
-      "contextProvided": 1,
-      "answerability": 5,
-      "focus": 3
+      "clarity": {
+        "score": 3,
+        "description": "Unclear phrasing or poor grammar makes interpretation difficult."
+      },
+      "specificity": {
+        "score": 2,
+        "description": "Too broad to be useful or actionable."
+      },
+      "contextProvided": {
+        "score": 1,
+        "description": "Completely context-free."
+      },
+      "answerability": {
+        "score": 5,
+        "description": "Mostly answerable; results may lack depth or precision."
+      },
+      "focus": {
+        "score": 3,
+        "description": "Jumping between unrelated ideas or goals."
+      }
     },
     "tips": [
       {"tip1": "Provide enough detail so the AI understands exactly what needs improvement."},
@@ -81,6 +111,7 @@ export async function callGemini(
     ]
   }
 }
+
 
 Prompt to improve: '${promptToRefine}'  
                 `,

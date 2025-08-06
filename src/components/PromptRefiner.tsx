@@ -1,3 +1,4 @@
+import { promptAttributeExplanations } from "../util/promptAttributeExplanations";
 import { useState } from "react";
 import { callGemini } from "../hooks/useGemini";
 import type { PromptRefinerResponse } from "../types/Types";
@@ -5,6 +6,7 @@ type PromptRefinerType = { geminiKey: string };
 const PromptRefiner = ({ geminiKey }: PromptRefinerType) => {
   const [promptToRefine, setPromptToRefine] = useState<string>("");
   const [promptResponse, setPromptResponse] = useState<PromptRefinerResponse>();
+
   return (
     <div className="flex flex-col items-center justify-center text-center">
       <h1 className="text-lg">Please write the prompt you want to refine</h1>
@@ -37,23 +39,64 @@ const PromptRefiner = ({ geminiKey }: PromptRefinerType) => {
             Feedback:
             <ul>
               <li>
-                Clarity: {promptResponse.initialPromptFeedback.rating.clarity}
+                Clarity:{" "}
+                {promptResponse.initialPromptFeedback.rating.clarity.score}
                 /10
+                <p>
+                  {
+                    promptResponse.initialPromptFeedback.rating.clarity
+                      .description
+                  }
+                </p>
               </li>
               <li>
                 Specificity:
-                {promptResponse.initialPromptFeedback.rating.specificity}/10
+                {promptResponse.initialPromptFeedback.rating.specificity.score}
+                /10
+                <p>
+                  {
+                    promptResponse.initialPromptFeedback.rating.specificity
+                      .description
+                  }
+                </p>
               </li>
               <li>
                 Context Provided:
-                {promptResponse.initialPromptFeedback.rating.contextProvided}/10
+                {
+                  promptResponse.initialPromptFeedback.rating.contextProvided
+                    .score
+                }
+                /10
+                <p>
+                  {
+                    promptResponse.initialPromptFeedback.rating.contextProvided
+                      .description
+                  }
+                </p>
               </li>
               <li>
                 Answerability:
-                {promptResponse.initialPromptFeedback.rating.answerability}/10
+                {
+                  promptResponse.initialPromptFeedback.rating.answerability
+                    .score
+                }
+                /10
+                <p>
+                  {
+                    promptResponse.initialPromptFeedback.rating.answerability
+                      .description
+                  }
+                </p>
               </li>
               <li>
-                Focus: {promptResponse.initialPromptFeedback.rating.focus}/10
+                Focus: {promptResponse.initialPromptFeedback.rating.focus.score}
+                /10
+                <p>
+                  {
+                    promptResponse.initialPromptFeedback.rating.focus
+                      .description
+                  }
+                </p>
               </li>
             </ul>
             Tips:
