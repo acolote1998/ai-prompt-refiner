@@ -20,7 +20,7 @@ const Settings = () => {
     <div>
       <p>
         {keyFromUser?.key ? (
-          <div className="absolute right-0 p-1 bg-gray-800 rounded-lg text-green-500 font-light">
+          <div className="cursor-default absolute right-0 p-1 bg-gray-800 rounded-lg text-green-500 font-light">
             Gemini key successfully saved
           </div>
         ) : (
@@ -30,15 +30,19 @@ const Settings = () => {
       {!keyFromUser?.key && <HowToGetKey />}
       {keyIsUpdating && (
         <>
-          <input
-            className="bg-white rounded-lg"
-            type="password"
-            onChange={(e) => {
-              setKeyInput(e.target.value);
-            }}
-          />
+          <div>
+            <p className="text-lg ">Please paste your key here</p>
+            <input
+              className="bg-white rounded-lg mb-4 mt-1 w-[35vw]"
+              type="password"
+              onChange={(e) => {
+                setKeyInput(e.target.value);
+              }}
+            />
+          </div>
           <div className="flex gap-2 items-center justify-center">
-            <p
+            <div
+              className="cursor-pointer m-1 p-2 rounded-lg bg-green-400 font-semibold"
               onClick={async () => {
                 if (user) {
                   await updateApiKeyByUserId(user.id, keyInput);
@@ -47,9 +51,10 @@ const Settings = () => {
                 }
               }}
             >
-              Save key
-            </p>
+              Save key 💾
+            </div>
             <p
+              className="cursor-pointer pl-4 pr-4 pt-2 pb-2 rounded-lg bg-red-500 text-white font-bold"
               onClick={() => {
                 setKeyIsUpdating((prev) => !prev);
               }}
@@ -62,7 +67,7 @@ const Settings = () => {
       {!keyIsUpdating && (
         <>
           <div
-            className="p-1 bg-yellow-500 rounded-lg text-black-500 font-bold"
+            className="cursor-pointer p-1 bg-yellow-500 rounded-lg text-black-500 font-bold"
             onClick={() => {
               setKeyIsUpdating((prev) => !prev);
             }}
