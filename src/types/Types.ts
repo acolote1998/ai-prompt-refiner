@@ -27,3 +27,9 @@ export type PromptRefinerResponse = {
     tips: [{ tip1: string }, { tip2: string }, { tip3: string }];
   };
 };
+
+export type FeedbackItemType = {
+  nameOfAttribute: string;
+  score: number;
+  description: string;
+};

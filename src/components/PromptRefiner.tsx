@@ -1,7 +1,7 @@
-import { promptAttributeExplanations } from "../util/promptAttributeExplanations";
 import { useState } from "react";
 import { callGemini } from "../hooks/useGemini";
 import type { PromptRefinerResponse } from "../types/Types";
+import FeedbackItem from "./FeedbackItem";
 type PromptRefinerType = { geminiKey: string };
 const PromptRefiner = ({ geminiKey }: PromptRefinerType) => {
   const [promptToRefine, setPromptToRefine] = useState<string>("");
@@ -38,66 +38,55 @@ const PromptRefiner = ({ geminiKey }: PromptRefinerType) => {
           <div className="flex flex-col items-center text-center justify-center w-[50vw]">
             Feedback:
             <ul>
-              <li>
-                Clarity:{" "}
-                {promptResponse.initialPromptFeedback.rating.clarity.score}
-                /10
-                <p>
-                  {
-                    promptResponse.initialPromptFeedback.rating.clarity
-                      .description
-                  }
-                </p>
-              </li>
-              <li>
-                Specificity:
-                {promptResponse.initialPromptFeedback.rating.specificity.score}
-                /10
-                <p>
-                  {
-                    promptResponse.initialPromptFeedback.rating.specificity
-                      .description
-                  }
-                </p>
-              </li>
-              <li>
-                Context Provided:
-                {
+              <FeedbackItem
+                description={
+                  promptResponse.initialPromptFeedback.rating.clarity
+                    .description
+                }
+                nameOfAttribute="Clarity"
+                score={
+                  promptResponse.initialPromptFeedback.rating.clarity.score
+                }
+              />
+              <FeedbackItem
+                description={
+                  promptResponse.initialPromptFeedback.rating.specificity
+                    .description
+                }
+                nameOfAttribute="Specificity"
+                score={
+                  promptResponse.initialPromptFeedback.rating.specificity.score
+                }
+              />
+              <FeedbackItem
+                description={
+                  promptResponse.initialPromptFeedback.rating.contextProvided
+                    .description
+                }
+                nameOfAttribute="Context Provided"
+                score={
                   promptResponse.initialPromptFeedback.rating.contextProvided
                     .score
                 }
-                /10
-                <p>
-                  {
-                    promptResponse.initialPromptFeedback.rating.contextProvided
-                      .description
-                  }
-                </p>
-              </li>
-              <li>
-                Answerability:
-                {
+              />
+              <FeedbackItem
+                description={
+                  promptResponse.initialPromptFeedback.rating.answerability
+                    .description
+                }
+                nameOfAttribute="Answerability"
+                score={
                   promptResponse.initialPromptFeedback.rating.answerability
                     .score
                 }
-                /10
-                <p>
-                  {
-                    promptResponse.initialPromptFeedback.rating.answerability
-                      .description
-                  }
-                </p>
-              </li>
-              <li>
-                Focus: {promptResponse.initialPromptFeedback.rating.focus.score}
-                /10
-                <p>
-                  {
-                    promptResponse.initialPromptFeedback.rating.focus
-                      .description
-                  }
-                </p>
-              </li>
+              />
+              <FeedbackItem
+                description={
+                  promptResponse.initialPromptFeedback.rating.focus.description
+                }
+                nameOfAttribute="Focus"
+                score={promptResponse.initialPromptFeedback.rating.focus.score}
+              />
             </ul>
             Tips:
             <ul>
