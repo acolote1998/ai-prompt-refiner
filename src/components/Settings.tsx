@@ -33,7 +33,7 @@ const Settings = () => {
           <div>
             <p className="text-lg ">Please paste your key here</p>
             <input
-              className="bg-white rounded-lg mb-4 mt-1 w-[35vw]"
+              className="text-center bg-white rounded-lg mb-4 mt-1 w-[35vw]"
               type="password"
               onChange={(e) => {
                 setKeyInput(e.target.value);
