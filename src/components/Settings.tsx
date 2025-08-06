@@ -20,7 +20,7 @@ const Settings = () => {
     <div>
       <p>
         {keyFromUser?.key ? (
-          <div className="bg-gray-800 rounded-lg text-green-500 font-light">
+          <div className="absolute right-0 p-1 bg-gray-800 rounded-lg text-green-500 font-light">
             Gemini key successfully saved
           </div>
         ) : (
@@ -37,37 +37,51 @@ const Settings = () => {
               setKeyInput(e.target.value);
             }}
           />
-          <p
-            onClick={async () => {
-              if (user) {
-                await updateApiKeyByUserId(user.id, keyInput);
-                await queryClient.invalidateQueries({ queryKey: ["key"] });
+          <div className="flex gap-2 items-center justify-center">
+            <p
+              onClick={async () => {
+                if (user) {
+                  await updateApiKeyByUserId(user.id, keyInput);
+                  await queryClient.invalidateQueries({ queryKey: ["key"] });
+                  setKeyIsUpdating((prev) => !prev);
+                }
+              }}
+            >
+              Save key
+            </p>
+            <p
+              onClick={() => {
                 setKeyIsUpdating((prev) => !prev);
-              }
-            }}
-          >
-            Save key
-          </p>
+              }}
+            >
+              X
+            </p>
+          </div>
         </>
       )}
       {!keyIsUpdating && (
         <>
-          <p
+          <div
+            className="p-1 bg-yellow-500 rounded-lg text-black-500 font-bold"
             onClick={() => {
               setKeyIsUpdating((prev) => !prev);
             }}
           >
-            Add / change your key
-          </p>
+            Update your key 🔑
+          </div>
 
           <p
             onClick={() => {
               setIsGuideToKeyVisible((prev) => !prev);
             }}
           >
-            {isGuideToKeyVisible
-              ? "Hide guide"
-              : "Click here if you want to see how to get a key"}
+            {isGuideToKeyVisible ? (
+              <p className="mt-5 mb-1 font-semibold ">Hide guide</p>
+            ) : (
+              <p className="mt-5 font-light">
+                Click here if you want to see how to get a key
+              </p>
+            )}
           </p>
           {isGuideToKeyVisible && <HowToGetKey />}
         </>
