@@ -37,7 +37,7 @@ const PromptRefiner = ({ geminiKey }: PromptRefinerType) => {
           </div>
           <div>
             Feedback:
-            <div className="grid grid-cols-5">
+            <div className="grid grid-cols-5 m-1 gap-1">
               <FeedbackItem
                 description={
                   promptResponse.initialPromptFeedback.rating.clarity

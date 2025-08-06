@@ -23,16 +23,24 @@ const FeedbackItem = ({
   };
 
   const bgColor = calculateBgColor(score);
+
+  const calculateTextColor = (score: number): string => {
+    const lightTextScores = [1, 2, 3, 4]; // dark backgrounds → use white text
+
+    return lightTextScores.includes(score) ? "text-white" : "text-black";
+  };
+  const textColor = calculateTextColor(score);
+
   return (
-    <div className={`${bgColor}`}>
-      <div>
+    <div className={`${textColor} flex flex-col gap-1`}>
+      <div className={`${bgColor} rounded-xl`}>
         <p className="font-extrabold">{nameOfAttribute}</p>
         <p className="font-bold">
           {score}
           /10
         </p>
       </div>
-      <p>{description}</p>
+      <p className={`${bgColor} rounded-xl`}>{description}</p>
     </div>
   );
 };
