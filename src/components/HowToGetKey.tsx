@@ -1,7 +1,7 @@
 const HowToGetKey = () => {
   return (
     <div className="flex flex-col m-2 gap-1 p-2 bg-white rounded-2xl shadow max-w-sm mx-auto">
-      <h1 className="text-xl font-semibold text-gray-800">
+      <h1 className="text-xl font-semibold" style={{ color: "black" }}>
         How to Get a Gemini API Key
       </h1>
       <ol className="list-decimal list-inside space-y-2 text-gray-700">

@@ -9,9 +9,6 @@ import { useNavigate } from "@tanstack/react-router";
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const navItemStyles =
-    "cursor-pointer text-green-500 hover:text-green-300 transition-colors";
-
   return (
     <nav className="w-full bg-gray-800 text-green-500 shadow-md py-2 px-6 flex items-center justify-between">
       <div
@@ -22,19 +19,24 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center gap-6 text-base font-medium">
-        <p onClick={() => navigate({ to: "/" })} className={navItemStyles}>
+        <p
+          style={{ color: "lightgreen" }}
+          onClick={() => navigate({ to: "/" })}
+          className={"cursor-pointer"}
+        >
           Home
         </p>
 
         <SignedIn>
           <p
+            style={{ color: "lightgreen" }}
             onClick={() => navigate({ to: "/settings" })}
-            className={navItemStyles}
+            className={"cursor-pointer"}
           >
             Settings
           </p>
           <SignOutButton>
-            <button className="text-gray-400 hover:text-red-500 transition-colors">
+            <button className="cursor-pointer text-gray-400 hover:text-red-500 transition-colors">
               Sign out
             </button>
           </SignOutButton>
@@ -42,7 +44,7 @@ const Navbar = () => {
 
         <SignedOut>
           <SignInButton>
-            <button className="text-gray-400 hover:text-green-500 transition-colors">
+            <button className="cursor-pointer text-gray-400 hover:text-green-500 transition-colors">
               Sign in
             </button>
           </SignInButton>
