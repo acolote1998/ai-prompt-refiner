@@ -7,6 +7,9 @@ function App() {
   const { data: keyRowFromDb } = useGetKey(user?.id);
   return (
     <>
+      <h1 className="font-semibold text-3xl text-center mb-2 underline">
+        Prompt Refiner
+      </h1>
       <SignedIn>
         {!keyRowFromDb?.key && (
           <p className="text-center">

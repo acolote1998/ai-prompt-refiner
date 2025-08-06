@@ -9,6 +9,9 @@ export const Route = createFileRoute("/settings/")({
 function RouteComponent() {
   return (
     <div className="flex flex-col items-center justify-center text-center">
+      <h1 className="font-semibold text-3xl text-center mb-2 underline">
+        Settings
+      </h1>
       <SignedIn>
         <Settings />
       </SignedIn>

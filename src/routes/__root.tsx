@@ -9,7 +9,6 @@ function RootComponent() {
   return (
     <>
       <Navbar />
-      <h1 className="font-bold text-3xl text-center">Prompt Refiner</h1>
       <Outlet />
     </>
   );
