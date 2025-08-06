@@ -19,9 +19,13 @@ const Settings = () => {
   return (
     <div>
       <p>
-        {keyFromUser?.key
-          ? "Gemini key successfully saved"
-          : 'Please add a Gemini Key by pasting it below and then clicking "Update key"'}
+        {keyFromUser?.key ? (
+          <div className="bg-gray-800 rounded-lg text-green-500 font-light">
+            Gemini key successfully saved
+          </div>
+        ) : (
+          'Please add a Gemini Key by pasting it below and then clicking "Update key"'
+        )}
       </p>
       {!keyFromUser?.key && <HowToGetKey />}
       {keyIsUpdating && (
