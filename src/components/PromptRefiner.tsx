@@ -17,14 +17,15 @@ const PromptRefiner = ({ geminiKey }: PromptRefinerType) => {
     <div className="flex flex-col items-center justify-center text-center">
       {!promptResponse && (
         <>
-          <h1 className="text-lg">
+          <h1 className="text-lg m-2">
             Please write the prompt you want to refine
           </h1>
           <textarea
+            style={{ resize: "none" }}
             onChange={(e) => {
               setPromptToRefine(e.target.value);
             }}
-            className="bg-white w-[70vw] h-[20vh] text-sm"
+            className="bg-white w-[70vw] h-[15vh] p-1 text-md font-light rounded-xl"
           />
           <p
             className="bg-amber-300 rounded-md p-2 m-5"
