@@ -3,6 +3,7 @@ import { callGemini } from "../hooks/useGemini";
 import type { PromptRefinerResponse } from "../types/Types";
 import FeedbackItem from "./FeedbackItem";
 import TipComponent from "./TipComponent";
+import PromptDisplay from "./PromptDisplay";
 type PromptRefinerType = { geminiKey: string };
 const PromptRefiner = ({ geminiKey }: PromptRefinerType) => {
   const [promptToRefine, setPromptToRefine] = useState<string>("");
@@ -16,7 +17,6 @@ const PromptRefiner = ({ geminiKey }: PromptRefinerType) => {
     <div className="flex flex-col items-center justify-center text-center">
       {!promptResponse && (
         <>
-          {" "}
           <h1 className="text-lg">
             Please write the prompt you want to refine
           </h1>
@@ -48,16 +48,14 @@ const PromptRefiner = ({ geminiKey }: PromptRefinerType) => {
               {isOriginalPromptVisible ? "Hide" : "Show"} original prompt
             </p>
             {isOriginalPromptVisible && (
-              <>
-                <p>Original prompt:</p>
-                <p>{promptResponse.promptToImprove}</p>
-              </>
+              <PromptDisplay
+                content={promptResponse.promptToImprove}
+                title="Original Prompt"
+              />
             )}
-            <p>Refined prompt:</p>
-            <textarea
-              className="bg-white w-[70vw] h-[20vh] text-sm"
-              value={promptResponse.refinedPrompt}
-              readOnly
+            <PromptDisplay
+              content={promptResponse.refinedPrompt}
+              title="Refined Prompt"
             />
           </div>
           <p
