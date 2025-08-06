@@ -1,4 +1,9 @@
-import { SignedIn } from "@clerk/clerk-react";
+import {
+  SignedIn,
+  SignedOut,
+  SignOutButton,
+  SignInButton,
+} from "@clerk/clerk-react";
 import { useNavigate } from "@tanstack/react-router";
 
 const Navbar = () => {
@@ -20,7 +25,11 @@ const Navbar = () => {
         >
           Settings
         </p>
+        <SignOutButton />
       </SignedIn>
+      <SignedOut>
+        <SignInButton />
+      </SignedOut>
     </div>
   );
 };

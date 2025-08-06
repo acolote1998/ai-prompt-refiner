@@ -21,13 +21,10 @@ function App() {
           </p>
         )}
         {keyRowFromDb?.key && <PromptRefiner geminiKey={keyRowFromDb.key} />}
-        <div className="flex items-center justify-center">
-          <SignOutButton />
-        </div>
+        <div className="flex items-center justify-center"></div>
       </SignedIn>
       <SignedOut>
         <div className="flex flex-col">
-          <SignInButton />
           <p className="text-center">
             Please sign in to get access to the prompt refiner
           </p>
