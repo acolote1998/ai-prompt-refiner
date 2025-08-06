@@ -17,7 +17,7 @@ const PromptRefiner = ({ geminiKey }: PromptRefinerType) => {
         className="bg-amber-300 rounded-md p-2 m-5"
         onClick={async () => {
           const answerGemini = await callGemini(geminiKey, promptToRefine);
-          setRefinedPrompt(answerGemini);
+          setRefinedPrompt(answerGemini.refinedPrompt);
         }}
       >
         Refine

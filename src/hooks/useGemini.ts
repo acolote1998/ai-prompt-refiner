@@ -1,10 +1,11 @@
 import axios from "axios";
+import type { PromptRefinerResponse } from "../types/Types";
 
 export async function callGemini(
   geminiKey: string,
   promptToRefine: string,
   delayMs = 6000
-) {
+): Promise<PromptRefinerResponse> {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiKey}`;
 
   while (true) {
@@ -94,8 +95,11 @@ Prompt to improve: '${promptToRefine}'
           "Content-Type": "application/json",
         },
       });
-
-      return response.data.candidates[0].content.parts[0].text;
+      const responseContent = response.data.candidates[0].content.parts[0].text;
+      const cleanContent = responseContent
+        .replace(/^```json\s*/, "") // Remove starting ```json (with optional spaces/newline)
+        .replace(/\s*```$/, ""); // Remove trailing ```
+      return JSON.parse(cleanContent);
     } catch (e) {
       console.error(e, `Error: Retrying in ${delayMs / 1000} seconds...`);
       await new Promise((resolve) => setTimeout(resolve, delayMs));
