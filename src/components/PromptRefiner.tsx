@@ -28,13 +28,14 @@ const PromptRefiner = ({ geminiKey }: PromptRefinerType) => {
             className="bg-white w-[70vw] h-[15vh] p-1 text-md font-light rounded-xl"
           />
           <p
-            className="bg-amber-300 rounded-md p-2 m-5"
+            style={{ color: "lightgreen" }}
+            className="cursor-pointer bg-gray-700 font-semibold text-lg rounded-md p-3 m-5"
             onClick={async () => {
               const answerGemini = await callGemini(geminiKey, promptToRefine);
               setPromptResponse(answerGemini);
             }}
           >
-            Refine
+            Refine ✨
           </p>
         </>
       )}
