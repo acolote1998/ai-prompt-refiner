@@ -34,13 +34,13 @@ const FeedbackItem = ({
   return (
     <div className={`${textColor} flex flex-col gap-1`}>
       <div className={`${bgColor} rounded-xl`}>
-        <p className="font-extrabold">{nameOfAttribute}</p>
+        <p className="font-semibold">{nameOfAttribute}</p>
         <p className="font-bold">
           {score}
           /10
         </p>
       </div>
-      <p className={`${bgColor} rounded-xl`}>{description}</p>
+      <p className={`${bgColor} rounded-xl p-1 font-light`}>{description}</p>
     </div>
   );
 };

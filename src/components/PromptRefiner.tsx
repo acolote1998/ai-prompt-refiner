@@ -36,8 +36,8 @@ const PromptRefiner = ({ geminiKey }: PromptRefinerType) => {
             />
           </div>
           <div>
-            Feedback:
-            <div className="grid grid-cols-5 m-1 gap-1">
+            <h2 className="text-3xl font-bold m-5">Prompt Feedback</h2>
+            <div className="grid grid-cols-5 m-3 gap-3">
               <FeedbackItem
                 description={
                   promptResponse.initialPromptFeedback.rating.clarity
@@ -88,7 +88,7 @@ const PromptRefiner = ({ geminiKey }: PromptRefinerType) => {
                 score={promptResponse.initialPromptFeedback.rating.focus.score}
               />
             </div>
-            Tips:
+            <h2 className="text-3xl font-bold m-5">Tips</h2>
             <ul>
               <li>
                 Tip 1: {promptResponse.initialPromptFeedback.tips[0].tip1}
