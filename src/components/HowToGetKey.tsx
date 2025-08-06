@@ -1,21 +1,37 @@
 const HowToGetKey = () => {
   return (
-    <div className="flex flex-col">
-      <h1 className="text-xl">How to get a Gemini Key</h1>
-      <ul>
+    <div className="flex flex-col gap-1 p-2 bg-white rounded-2xl shadow max-w-xl mx-auto">
+      <h1 className="text-xl font-semibold text-gray-800">
+        How to Get a Gemini API Key
+      </h1>
+      <ol className="list-decimal list-inside space-y-2 text-gray-700">
         <li>
-          <a href="https://aistudio.google.com/welcome" target="_blank">
-            Go to Google AI Studio or click here
+          <a
+            href="https://aistudio.google.com/welcome"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:underline"
+          >
+            Go to Google AI Studio
           </a>
         </li>
-        <li>Click "Sign in to Google AI Studio"</li>
+        <li>
+          Click{" "}
+          <span className="font-medium">"Sign in to Google AI Studio"</span>
+        </li>
         <li>Sign in with your desired Google account</li>
-        <li>Click "Get API key"</li>
-        <li>Click "Create API key"</li>
+        <li>
+          Click <span className="font-medium">"Get API key"</span>
+        </li>
+        <li>
+          Click <span className="font-medium">"Create API key"</span>
+        </li>
         <li>Copy the API key</li>
-        <li>Paste in the white input below</li>
-        <li>Click "Save key"</li>
-      </ul>
+        <li>Paste it in the white input below</li>
+        <li>
+          Click <span className="font-medium">"Save key"</span>
+        </li>
+      </ol>
     </div>
   );
 };
