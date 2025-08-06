@@ -1,9 +1,4 @@
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  SignOutButton,
-} from "@clerk/clerk-react";
+import { SignedIn, SignedOut } from "@clerk/clerk-react";
 import { createFileRoute } from "@tanstack/react-router";
 import Settings from "../../components/Settings";
 
@@ -16,10 +11,9 @@ function RouteComponent() {
     <div className="flex flex-col items-center justify-center text-center">
       <SignedIn>
         <Settings />
-        <SignOutButton />
       </SignedIn>
       <SignedOut>
-        <SignInButton />
+        <p>Please sign in to see this page</p>
       </SignedOut>
     </div>
   );

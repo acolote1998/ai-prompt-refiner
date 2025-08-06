@@ -1,10 +1,4 @@
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  SignOutButton,
-  useUser,
-} from "@clerk/clerk-react";
+import { SignedIn, SignedOut, useUser } from "@clerk/clerk-react";
 import useGetKey from "./hooks/useGetKey";
 import PromptRefiner from "./components/PromptRefiner";
 
