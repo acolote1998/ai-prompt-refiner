@@ -2,6 +2,7 @@ import { useState } from "react";
 import { callGemini } from "../hooks/useGemini";
 import type { PromptRefinerResponse } from "../types/Types";
 import FeedbackItem from "./FeedbackItem";
+import TipComponent from "./TipComponent";
 type PromptRefinerType = { geminiKey: string };
 const PromptRefiner = ({ geminiKey }: PromptRefinerType) => {
   const [promptToRefine, setPromptToRefine] = useState<string>("");
@@ -88,18 +89,20 @@ const PromptRefiner = ({ geminiKey }: PromptRefinerType) => {
                 score={promptResponse.initialPromptFeedback.rating.focus.score}
               />
             </div>
-            <h2 className="text-3xl font-bold m-5">Tips</h2>
-            <ul>
-              <li>
-                Tip 1: {promptResponse.initialPromptFeedback.tips[0].tip1}
-              </li>
-              <li>
-                Tip 2: {promptResponse.initialPromptFeedback.tips[1].tip2}
-              </li>
-              <li>
-                Tip 3: {promptResponse.initialPromptFeedback.tips[2].tip3}
-              </li>
-            </ul>
+            <h2 className="text-3xl font-bold m-5">
+              Tips to improve your prompts
+            </h2>
+            <div className="flex flex-col">
+              <TipComponent
+                tipText={promptResponse.initialPromptFeedback.tips[0].tip1}
+              />
+              <TipComponent
+                tipText={promptResponse.initialPromptFeedback.tips[1].tip2}
+              />
+              <TipComponent
+                tipText={promptResponse.initialPromptFeedback.tips[2].tip3}
+              />
+            </div>
           </div>
         </>
       )}
