@@ -20,7 +20,7 @@ const Settings = () => {
     <div>
       <p>
         {keyFromUser?.key ? (
-          <div className="cursor-default absolute right-0 p-1 bg-gray-800 rounded-lg text-green-500 font-light">
+          <div className="cursor-default absolute bottom-10 right-10 md:bottom-auto md:right-5 p-1 bg-gray-800 rounded-lg text-green-500 font-light">
             Key successfully saved 🔑
           </div>
         ) : (
