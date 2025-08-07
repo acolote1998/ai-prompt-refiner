@@ -70,7 +70,7 @@ const PromptRefiner = ({ geminiKey }: PromptRefinerType) => {
           {isPromptFeedbackVisible && (
             <div>
               <h2 className="text-3xl font-bold m-5">Prompt Feedback</h2>
-              <div className="grid grid-cols-5 m-3 gap-3">
+              <div className="flex flex-col md:grid md:grid-cols-5 m-3 gap-5 md:gap-3">
                 <FeedbackItem
                   description={
                     promptResponse.initialPromptFeedback.rating.clarity
