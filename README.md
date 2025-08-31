@@ -4,6 +4,8 @@ _Make your prompts sharper, clearer, and more effective._
 
 **AI Prompt Refiner** is a web application built with **React and TypeScript** that helps users improve their AI prompts before sending them to a large language model (LLM). The app uses **Google Gemini** to analyze and refine user-provided prompts, making them more focused and likely to produce high-quality responses.
 
+Live Version: https://acolote1998.github.io/ai-prompt-refiner/
+
 ### How It Works
 
 1. **Write your prompt** – Enter any prompt you’d like to refine.
