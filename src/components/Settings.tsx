@@ -63,7 +63,7 @@ const Settings = () => {
               setKeyIsUpdating((prev) => !prev);
             }}
           >
-            Update your key 🔑
+            {keyFromUser ? "Update your key 🔑" : "Add your key 🔑"}
           </div>
 
           <p
