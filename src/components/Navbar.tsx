@@ -1,9 +1,3 @@
-import {
-  SignedIn,
-  SignedOut,
-  SignOutButton,
-  SignInButton,
-} from "@clerk/clerk-react";
 import { useNavigate } from "@tanstack/react-router";
 
 const Navbar = () => {
@@ -27,28 +21,13 @@ const Navbar = () => {
           Home
         </p>
 
-        <SignedIn>
-          <p
-            style={{ color: "lightgreen" }}
-            onClick={() => navigate({ to: "/settings" })}
-            className={"cursor-pointer"}
-          >
-            Settings
-          </p>
-          <SignOutButton>
-            <button className="cursor-pointer text-gray-400 hover:text-red-500 transition-colors">
-              Sign out
-            </button>
-          </SignOutButton>
-        </SignedIn>
-
-        <SignedOut>
-          <SignInButton>
-            <button className="cursor-pointer text-gray-400 hover:text-green-500 transition-colors">
-              Sign in
-            </button>
-          </SignInButton>
-        </SignedOut>
+        <p
+          style={{ color: "lightgreen" }}
+          onClick={() => navigate({ to: "/settings" })}
+          className={"cursor-pointer"}
+        >
+          Settings
+        </p>
       </div>
     </nav>
   );

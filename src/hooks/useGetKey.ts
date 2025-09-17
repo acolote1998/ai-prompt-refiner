@@ -1,13 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
-import { getApiKeyByUserId } from "../supabaseCalls/useSupabase";
-
-const useGetKey = (userId?: string) => {
-  const { isPending, error, data } = useQuery<{ key: string } | null>({
-    queryKey: ["key", userId],
-    queryFn: () => getApiKeyByUserId(userId!),
-    enabled: !!userId,
-  });
-
-  return { isPending, error, data };
+// Deprecated: replaced by direct localStorage access
+const useGetKey = () => {
+  const key = localStorage.getItem("gemini_api_key");
+  return { isPending: false, error: null, data: key ? { key } : null };
 };
 export default useGetKey;
