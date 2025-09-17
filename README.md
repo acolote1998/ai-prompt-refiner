@@ -35,6 +35,7 @@ Live Version: https://acolote1998.github.io/ai-prompt-refiner/
 3. Go back to `Home`, write your prompt, and click “Refine”.
 
 Notes:
+
 - The key is stored under `localStorage["gemini_api_key"]` and read by the app when calling Gemini.
 - You can update or clear the key anytime from `Settings`.
 
