@@ -26,10 +26,20 @@ Live Version: https://acolote1998.github.io/ai-prompt-refiner/
 - 📊 **Prompt scoring** – Understand your prompt’s strengths and weaknesses with clear numerical ratings.
 - 💬 **Feedback & suggestions** – Learn how to structure more effective prompts.
 - 🧠 **Practical tips** – Get three concise tips based on your own prompt.
-- 🔑 **Secure use** – Requires your own **Gemini API key** and login to access the app.
+- 🔑 **Your key stays in your browser** – Requires your own **Gemini API key**, which is stored locally in your browser’s `localStorage` (no backend storage, no transmission to any server in this repo).
+
+### Getting Started
+
+1. Open the app and navigate to the `Settings` page (top navigation).
+2. Paste your **Gemini API key** in the input and click “Save key”.
+3. Go back to `Home`, write your prompt, and click “Refine”.
+
+Notes:
+- The key is stored under `localStorage["gemini_api_key"]` and read by the app when calling Gemini.
+- You can update or clear the key anytime from `Settings`.
 
 ### Purpose
 
 The app is designed for **students, developers, content creators, and AI enthusiasts** who want to get the most out of LLMs. Instead of guessing how to phrase a prompt, users can learn to **refine their thinking and prompt-writing skills** with immediate feedback.
 
-This repository contains the **frontend component** of the project, which delivers the user experience, connects to Gemini, and displays the analyses in a simple, intuitive way.
+This repository contains the **frontend component** of the project, which delivers the user experience, connects to Gemini, and displays the analyses in a simple, intuitive way. There is **no authentication** and **no database**; all Gemini key handling is client-side via `localStorage`.

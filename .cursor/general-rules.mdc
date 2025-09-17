@@ -1,0 +1,159 @@
+---
+alwaysApply: true
+---
+
+## 🗺️ Domain Overview (Ubiquitous Language)
+
+- **Prompt**: Raw user input to be analyzed and improved.
+- **Refined Prompt**: Optimized rewrite produced by the model for better LLM responses.
+- **Scores**: Numeric ratings (1–10) for Clarity, Specificity, Context, Answerability, Focus.
+- **Feedback**: Written explanation of strengths and weaknesses of the original prompt.
+- **Tips**: Three actionable suggestions tailored to the user’s prompt.
+- **Gemini**: Google Gemini model used for analysis/refinement.
+- **Key Storage**: User‑provided Gemini API key stored locally in the browser (`localStorage`).
+
+---
+
+## 🧭 Product Flow (System Level)
+
+1. **User opens the app** and provides a **Gemini API key** in `Settings` (stored in `localStorage`).
+2. **Enter prompt** in the editor and submit.
+3. **Call Gemini** to generate: refined prompt, five scores, written feedback, and three tips.
+4. **Render results**: visual scores, refined prompt block, feedback list, tips.
+5. **Settings** route: view/update API key and basic preferences.
+
+---
+
+## 🧱 Frontend Architecture (React + TypeScript)
+
+- **Routing**: `tanstack/router` route files under `src/routes` (e.g., `__root.tsx`, `index.tsx`, `settings/index.tsx`).
+- **Components**: `PromptRefiner`, `PromptDisplay`, `FeedbackItem`, `TipComponent`, `Navbar`, `Settings`, `HowToGetKey`.
+- **Hooks**: `useGemini` for model calls; read/write the key directly via `localStorage`.
+- **Types**: Define shared interfaces in `src/types/Types.ts` for prompt input, scores, and results.
+- **Styling**: `src/index.css` and component‑scoped classes; keep UI simple, readable, and responsive.
+
+---
+
+## 🔐 Security & Privacy
+
+- **Gemini API key** is user‑provided and must remain on the client; never commit or send to backend.
+- **Do not persist** the Gemini key to any database; store only in `localStorage`.
+- **No authentication**: The app is fully client‑side; avoid introducing server calls for key storage.
+- **Network**: All requests over HTTPS. Avoid logging prompts or keys.
+- **Rate limits**: Backoff and error messaging when hitting Gemini quota or rate limits.
+
+---
+
+## 📡 Model Integration (Gemini)
+
+- Centralize all model calls in `src/hooks/useGemini.ts` with a clear interface:
+
+```ts
+export interface PromptAnalysisResult {
+  refinedPrompt: string;
+  scores: {
+    clarity: number;
+    specificity: number;
+    context: number;
+    answerability: number;
+    focus: number;
+  };
+  feedback: string[];
+  tips: string[];
+}
+
+export type AnalyzePrompt = (params: {
+  apiKey: string;
+  prompt: string;
+}) => Promise<PromptAnalysisResult>;
+```
+
+- Validate outputs defensively; clamp scores to 1–10 and normalize arrays.
+- Surface typed errors (network, auth, quota) for UI handling.
+- Keep the hook pure regarding UI; return data + loading + error states.
+
+---
+
+## 🧰 Types & Validation
+
+- Keep domain types in `src/types/Types.ts` and reuse across components.
+- Validate user input length (e.g., 1–4000 chars) before sending to Gemini.
+- Sanitize display by escaping user content where needed; avoid HTML injection.
+
+---
+
+## 🧩 UX & Accessibility
+
+- **Prompt editor**: multiline, character counter, clear submit CTA.
+- **Loading**: show spinners/skeletons while awaiting Gemini.
+- **Results layout**: refined prompt first, then scores, then feedback and tips.
+- **Scores**: always show five categories with consistent ordering and iconography.
+- **Empty/error states**: friendly, actionable messages; never leave blank screens.
+- **Keyboard**: full keyboard navigation; focus management on route changes and result rendering.
+- **A11y**: proper labels, roles, and `aria-live=polite` for async updates.
+
+---
+
+## 🔧 Settings & Key Management
+
+- `Settings` route provides instructions (`HowToGetKey`) and a controlled input to paste the Gemini key.
+- On save, store the key in `localStorage` under `gemini_api_key`.
+- Mask the key in UI; provide a way to clear or update it.
+
+---
+
+## 🧪 Testing Strategy
+
+- **Unit**: component rendering logic (scores, tips), `useGemini` happy/error paths with mocked fetch.
+- **Integration**: prompt submission flow from input → result render using testing library.
+- **Smoke**: basic route navigation, settings save/clear.
+
+---
+
+## 📈 Observability (Lightweight)
+
+- Minimal console logging; no PII or API keys.
+- Optionally add basic performance marks around Gemini calls.
+
+---
+
+## ⚙️ Build, Environments, CI/CD
+
+- Built with **Vite**; TypeScript strict mode on.
+- Deploy via GitHub Actions to **GitHub Pages** (`.github/workflows/deployToGhPages.yml`).
+- CI: typecheck, lint, build; ensure public path is correct for GH Pages.
+- Env: read base URL and router base for Pages as needed; do not embed API keys.
+
+---
+
+## 🧹 Naming & Style Conventions
+
+- Components: PascalCase (`PromptRefiner`, `FeedbackItem`). Hooks: camelCase with `use*` prefix.
+- Avoid overly short names; prefer clarity (`refinedPrompt` over `rp`).
+- Keep functions small; early‑return on errors; avoid deep nesting.
+
+---
+
+## ✅ Cross‑Cutting PR Checklist
+
+1. Input validated; no oversized requests to Gemini.
+2. No API keys logged or persisted to backend; key masked in UI.
+3. Error states implemented for auth, network, and quota.
+4. Results render deterministically: refined prompt, five scores, feedback, tips.
+5. A11y checks: labels, keyboard navigation, `aria-live` for async results.
+6. CI passes: typecheck, lint, build; GH Pages config verified.
+7. Code follows TypeScript strictness and clear naming.
+
+---
+
+## 🔮 Near‑Term Enhancements (Optional)
+
+- Export/share refined prompts.
+- History of analyses (client‑side only, opt‑in).
+- Presets for target tasks (e.g., coding, writing, ideation) to steer refinement.
+
+---
+
+## Always follow SOLID principles, and other software engineering principles; code like a senior developer.
+
+**End of cross‑cutting rules.**
